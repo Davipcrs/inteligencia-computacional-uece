@@ -3,8 +3,8 @@ class Ambiente():
         self.x = 0
         self.y = 0
         self.local = []
-        self.__agente_x = 1
-        self.__agente_y = 1
+        self.__agente_x = 0
+        self.__agente_y = 0
 
     def carregar_ambiente(self):
         pass
@@ -43,3 +43,13 @@ class Ambiente():
         self.__agente_y -= 1
 
         return False
+
+    def recuperar_informacao_local(self):
+        if self.local[self.__agente_x][self.__agente_y] == 1:
+            dirt = True
+        else:
+            dirt = False
+        if self.__agente_x and self.__agente_y == 0:
+            return [True, dirt]
+
+        return [False, dirt]
