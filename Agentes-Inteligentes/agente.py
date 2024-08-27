@@ -17,9 +17,19 @@ class Agente():
         """
         pass
 
-    def salvar_historico(self):
-        """ABSTRACT"""
+    def usar_historico(self):
+        """Abstract"""
         pass
+
+    def salvar_historico(self, acao, parametro):
+        # hist_iteracao = [[agente_x, agente_y], pontos, acao, parametro_da_acao]
+        # ex1: hist_iteracao = [[0, 0], 0, limpar, null]
+        # ex2: hist_iteracao = [[0, 0], 1, andar, s]
+        # ex3: hist_iteracao = [[0, 1], 0, alterar_sentido, e]
+        # e assim por diante
+        # self.histmov.append(hist_iteracao)
+        self.histmov.append(
+            [[self.ambiente.__agente_x, self.ambiente.__agente_y], self.pontuacao, acao, parametro])
 
     def perceber(self):
         """Buscar informação do objeto ambiente"""
