@@ -41,6 +41,8 @@ class Agente():
         """
         Alterar Estado do ambiete
         """
+        self.ambiente.atualizar_ambiente()
+        
         pass
 
     def alterar_sentido(self, direcao):
