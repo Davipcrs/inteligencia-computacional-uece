@@ -7,11 +7,23 @@ class Ambiente():
         self.__agente_y = 0
 
     def carregar_ambiente(self):
+        """Carrega o ambiente de um arquivo para a variavel local"""
+        with open("ambiente.txt", 'r') as ambiente:
+            for linha in ambiente:
+                aux = []
+                for data in linha.split(" "):
+                    aux.append(data)
+                self.local.append(aux)
+
+        print("Ambiente original: ")
+        print(self.local)
+                
         pass
 
     def atualizar_ambiente(self):
-        pass
-
+        """Limpa o ambiente"""
+        self.local[self.__agente_x][self.__agente_y] = 0;
+         
     def mover_norte(self):
 
         if self.__agente_x == 0:
