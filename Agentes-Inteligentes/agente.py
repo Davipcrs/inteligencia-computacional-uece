@@ -29,7 +29,7 @@ class Agente():
         # e assim por diante
         # self.histmov.append(hist_iteracao)
         self.histmov.append(
-            [[self.ambiente.__agente_x, self.ambiente.__agente_y], self.pontuacao, acao, parametro])
+            [[self.ambiente.getAgenteX(), self.ambiente.getAgenteY()], self.head_pointer, self.pontuacao, acao, parametro])
 
     def perceber(self):
         """Buscar informação do objeto ambiente"""
@@ -42,7 +42,7 @@ class Agente():
         Alterar Estado do ambiete
         """
         self.ambiente.atualizar_ambiente()
-        
+
         pass
 
     def alterar_sentido(self, direcao):
@@ -62,9 +62,9 @@ class Agente():
 
         # CONSTANTES
         N = [1, 5]
-        S = [2]
-        L = [3]
-        O = [0, 4]
+        O = [2]
+        S = [3]
+        L = [0, 4]
 
         E = -1
         D = +1
@@ -77,11 +77,11 @@ class Agente():
         # ALOCAR O VALOR DO SENTIDO ATUAL A PARTIR DE UMA STRING
         if self.head_pointer == "n":
             atual = 1
-        elif self.head_pointer == "s":
-            atual = 2
-        elif self.head_pointer == "l":
-            atual = 3
         elif self.head_pointer == "o":
+            atual = 2
+        elif self.head_pointer == "s":
+            atual = 3
+        elif self.head_pointer == "l":
             atual = 4
 
         else:
@@ -97,7 +97,8 @@ class Agente():
             return "Erro, parametro errado no alterar_sentido"
 
         # EFETUAR CALCULO
-        novo_sentido = atual - virando
+        novo_sentido = atual + virando
+        # print(novo_sentido)
 
         # VALIDAR NOVO SENTIDO
         if novo_sentido in N:
