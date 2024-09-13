@@ -31,7 +31,6 @@ class Ambiente():
         self.local[self.__agente_x][self.__agente_y] = 0
 
     def mover_norte(self):
-
         if self.__agente_x == 0:
             return True
 
@@ -48,14 +47,6 @@ class Ambiente():
         return False
 
     def mover_leste(self):
-        if self.__agente_y == self.y - 1:
-            return True
-
-        self.__agente_y += 1
-
-        return False
-
-    def mover_oeste(self):
         if self.__agente_y == 0:
             return True
 
@@ -63,12 +54,22 @@ class Ambiente():
 
         return False
 
+    def mover_oeste(self):
+        if self.__agente_y == self.y - 1:
+            return True
+
+        self.__agente_y += 1
+
+        return False
+
     def recuperar_informacao_local(self):
-        if self.local[self.__agente_x][self.__agente_y] == 1:
+        if int(self.local[self.getAgenteX()][self.getAgenteY()]) == 1:
             dirt = True
         else:
             dirt = False
-        if self.__agente_x and self.__agente_y == 0:
-            return [True, dirt]
+        if self.__agente_x == 0 and self.__agente_y == 0:
+            home = True
 
-        return [False, dirt]
+        else:
+            home = False
+        return [home, dirt]

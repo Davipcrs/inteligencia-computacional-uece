@@ -16,3 +16,5 @@ with open("result.txt", "w") as r:
 
         r.write("iteração " + str(i)+": "+str(line)+"\n")
         i = i + 1
+
+print(agente.ambiente.local)
