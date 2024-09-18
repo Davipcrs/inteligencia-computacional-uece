@@ -1,7 +1,8 @@
 class Ambiente():
-    def __init__(self, x, y):
+    def __init__(self, x, y, caminho_ambiente):
         self.x = x
         self.y = y
+        self.caminho_ambiente = caminho_ambiente
         self.local = []
         self.__agente_x = 0
         self.__agente_y = 0
@@ -14,7 +15,7 @@ class Ambiente():
 
     def carregar_ambiente(self):
         """Carrega o ambiente de um arquivo para a variavel local"""
-        with open("ambiente.txt", 'r') as ambiente:
+        with open(self.caminho_ambiente, 'r') as ambiente:
             for linha in ambiente:
                 aux = []
                 for data in linha.split(" "):
@@ -24,7 +25,6 @@ class Ambiente():
         print("Ambiente original: ")
         print(self.local)
 
-        pass
 
     def atualizar_ambiente(self):
         """Limpa o ambiente"""
