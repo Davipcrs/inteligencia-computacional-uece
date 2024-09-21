@@ -2,9 +2,9 @@
 
 Aluno: Davi de Paula Coelho Raia dos Santos  
 Curso Ciência da Computação  
-NOTA: READAÇÃO JÁ ENVIADA
+NOTA: REDAÇÃO JÁ ENVIADA
 
-## Introdução
+## 1. Introdução
 
 Foi utilizado a linguagem Python para desenvolver os agentes e o ambiente.  
 A arquitetura usada no projeto foi a seguinte:  
@@ -19,9 +19,9 @@ A Classe Agente tem 2 classes filhas a classe AgenteReativo1 e a classe AgenteMo
 - A classe AgenteReativo1 contém um agente reativo baseado no agente reativo contido no projeto java AI indicado na atividade. Possue chances diferentes de executar ações. (Arquivo reativo_agente.py)
 - A classe AgenteModelo1 contém um agente baseado em modelos, foi definido um modelo de ações que o agente deve seguir. (Arquivo b_modelo_agente.py)
 
-## Decisões
+## 2. Decisões
 
-### Classe Agente
+### 2.1 Classe Agente
 
 Para auxiliar a implementação foi criado uma classe basica de agente que pode ser extendida para alcançar o objeto, essa classe é a Agente (agente.py) que contém os Métodos abstratos
 
@@ -30,7 +30,7 @@ def definir_acao():
     'responsável por definir a ação do agente e executá-la'
 
 def criar_modelo():
-    'Utilizada apenas por agentes baseados em modelos, para conter a       função responsável por alterar as ações.'
+    'Utilizada apenas por agentes baseados em modelos, para conter a função responsável por alterar as ações.'
 ```
 
 Os métodos pré implementadas da classe Agente são as seguintes:
@@ -72,7 +72,7 @@ def __init__(self, ambiente: Ambiente):
         self.counter = 0  # Usado no agente baseado em modelo para contar ações
 ```
 
-### Classe Ambiente
+### 2.2 Classe Ambiente
 
 Uma decisão importante foi que cada Instancia de uma classe Agente precisa ter um ambiente associado a ela. Isso foi feito pois a classe Ambiente (Que será tratada logo abaixo) guarda a informação do tamanho do ambiente, posição do agente no ambiente, e se a célula atual está suja ou limpa.  
 O Ambiente armazena os dados se sujeira por meio de uma Matriz.  
@@ -117,12 +117,70 @@ def mover_oeste(self):
  
 ```
 
-### Classe AgenteReativo1
+### 2.3 Classe AgenteReativo1
 
-### Classe AgenteModelo1
+Essa é a Classe em que será executada nos testes, ela herda atributos e métodos da classe Agente.  
+O método:
 
-## Como foi realizado os testes?
+``` python
+def definir_acao(self):
+```
 
-## Resultados
+É definido (feito o Override) dentro da classe AgenteReativo. Ela não implementa o método criar_modelo, uma vez que o agente Reativo não é definido por modelos.  
+Foi utilizado porcentagens para definir as ações:
 
-## Conclusões
+- Sempre que o ambiente estiver sujo limpe
+- 20% de chance de virar para a Esquerda
+- 20% de chance de virar para a Direita
+- 50% de chance de andar
+- 10% de chance de Se estiver em 'HOME' cancelar a atividade
+
+Antes de cada ação dessa o Agente Percebe o ambiente.
+
+### 2.4 Classe AgenteModelo1
+
+A classe também é utilizada nos testes, ela implementa ambos os métodos herdados.
+O Método criar_modelo cria um modelo circular de limpeza, esse modelo influencia a forma que o método definir_acao funciona.  
+
+O método definir ação:
+
+- Sempre limpa se o ambiente estiver sujo
+- Caso esteja limpo ele consulta o modelo:
+
+  - Caso o sensor reconheça um obstáculo ele altera a direção
+  - Caso o sensor NÃO reconheça o obstáculo ele anda
+
+- Existe uma chance de 10% de encerrar a operação caso o sensor reconheça 'HOME' e o não seja a primeira iteração (iteração = 0)
+
+o método criar modelo:
+
+- Checa o sensor de obstáculo
+- Usa um contador de alterações de direções para girar de forma circular no ambiente
+
+#### Nota: Verificar os códigos no arquivos: ambiente.py, agente.py, b_modelo_agente.py, reativo_agente.py
+
+## 3. Como foi realizado os testes?
+
+Foram criados 4 Ambientes pré definidos e editáveis pelo 'testador' (Localizados na pasta ambientes) em formato .txt.  
+O número 1 indica sujeira e o número 0 indica que está limpo (nos arquivos de ambiente).  
+Foi criado 4 instâncias de cada um dos 2 Agentes definidos acima, cada instância recebe um ambiente.  
+Os agentes serão comparados no mesmo ambiente.  
+2 Métodos de pontuação:
+
+- Simples: Um ponto é adicionado a cada limpeza efetuada
+- Complexo: Um ponto é adicionado a cada limpeza efetuada e removido a cada movimento (Andar e altera sentido)
+
+É gerado um relatório de cada decisão efetuada pelo agente (Localizado na pasta results), cada arquivo contém o histórico de:
+
+- Posição
+- Sentido
+- Pontuação Simples
+- Pontuação Complexa
+- Ação tomada
+- Parametro passado na ação
+
+Com base nesses dados coletados conseguimos verificar os resultados.
+
+## 4. Resultados
+
+## 5. Conclusões

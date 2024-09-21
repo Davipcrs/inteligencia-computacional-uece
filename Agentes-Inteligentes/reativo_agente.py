@@ -36,6 +36,4 @@ class AgenteReativo1(Agente):
                     self.salvar_historico("Retornar a HOME", None)
                     return 'HOME'
 
-            # Adicionar randomicidade
-
         return super().definir_acao()
