@@ -16,22 +16,38 @@ class AgenteReativo1(Agente):
         if self.vsensor[1] == False:
             rand = randint(0, 100)
 
-            if rand <= 20:
+            if self.vsensor[2] == True:
+                if rand < 45:
+                    self.pontuacao_v2 = self.pontuacao_v2 - 1
+                    self.alterar_sentido("e")
+                    self.salvar_historico("alterar sentido", "e")
+
+                if rand >= 45 and rand <= 90:
+                    self.pontuacao_v2 = self.pontuacao_v2 - 1
+                    self.alterar_sentido("e")
+                    self.salvar_historico("alterar sentido", "d")
+
+                if rand > 90 and rand <= 100:
+                    if self.vsensor[0] == True:
+                        self.salvar_historico("Retornar a HOME", None)
+                        return 'HOME'
+
+            elif rand <= 20:
                 self.pontuacao_v2 = self.pontuacao_v2 - 1
                 self.alterar_sentido("e")
                 self.salvar_historico("alterar sentido", "e")
 
-            if rand > 20 and rand <= 40:
+            elif rand > 20 and rand <= 40:
                 self.pontuacao_v2 = self.pontuacao_v2 - 1
                 self.alterar_sentido("d")
                 self.salvar_historico("alterar sentido", "d")
 
-            if rand > 40 and rand <= 90:
+            elif rand > 40 and rand <= 90:
                 self.pontuacao_v2 = self.pontuacao_v2 - 1
                 self.andar()
                 self.salvar_historico("andar", None)
 
-            if rand > 90 and rand <= 100:
+            elif rand > 90 and rand <= 100:
                 if self.vsensor[0] == True:
                     self.salvar_historico("Retornar a HOME", None)
                     return 'HOME'

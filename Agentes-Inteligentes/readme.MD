@@ -130,6 +130,11 @@ def definir_acao(self):
 Foi utilizado porcentagens para definir as ações:
 
 - Sempre que o ambiente estiver sujo limpe
+- Se encontrar um obstáculo:
+  - 45% de virar para a Esquerda
+  - 45% de virar para a Direta  
+  - 10% de chance de Se estiver em 'HOME' cancelar a atividade
+
 - 20% de chance de virar para a Esquerda
 - 20% de chance de virar para a Direita
 - 50% de chance de andar
@@ -165,6 +170,7 @@ Foram criados 4 Ambientes pré definidos e editáveis pelo 'testador' (Localizad
 O número 1 indica sujeira e o número 0 indica que está limpo (nos arquivos de ambiente).  
 Foi criado 4 instâncias de cada um dos 2 Agentes definidos acima, cada instância recebe um ambiente.  
 Os agentes serão comparados no mesmo ambiente.  
+Existe um limite de 1000 iterações  
 2 Métodos de pontuação:
 
 - Simples: Um ponto é adicionado a cada limpeza efetuada
