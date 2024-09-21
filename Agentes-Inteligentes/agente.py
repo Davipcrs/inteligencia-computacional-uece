@@ -6,9 +6,11 @@ class Agente():
         # Sensor atual [É Home?, Sujo ou Limpo?, Obstáculo?]
         self.vsensor = [True, False, False]
         self.pontuacao = 0  # Guarda o histórico de pontuação
+        self.pontuacao_v2 = 0  # Guarda o histórico de pontuação
         self.histmov = []  # Guarda o histórico de movimentos
         self.ambiente = ambiente  # Inicia o Ambiente
         self.head_pointer = "s"  # Inicia apontando para o Sul (Baixo)
+        self.counter = 0  # Usado no agente baseado em modelo para contar ações
 
     def definir_acao(self):
         """ABSTRACT
@@ -17,7 +19,7 @@ class Agente():
         """
         pass
 
-    def usar_historico(self):
+    def criar_modelo(self):
         """Abstract"""
         pass
 
@@ -29,21 +31,18 @@ class Agente():
         # e assim por diante
         # self.histmov.append(hist_iteracao)
         self.histmov.append(
-            [[self.ambiente.getAgenteX(), self.ambiente.getAgenteY()], self.head_pointer, self.pontuacao, acao, parametro])
+            [[self.ambiente.getAgenteX(), self.ambiente.getAgenteY()], self.head_pointer, self.pontuacao, self.pontuacao_v2, acao, parametro])
 
     def perceber(self):
         """Buscar informação do objeto ambiente"""
         consulta_ambiente = self.ambiente.recuperar_informacao_local()
         self.vsensor[0], self.vsensor[1] = consulta_ambiente[0], consulta_ambiente[1]
-        return
 
     def limpar(self):
         """
         Alterar Estado do ambiete
         """
         self.ambiente.atualizar_ambiente()
-
-        pass
 
     def alterar_sentido(self, direcao):
         """
@@ -101,19 +100,22 @@ class Agente():
         # print(novo_sentido)
 
         # VALIDAR NOVO SENTIDO
+        # REMOVER OBSTÁCULO
         if novo_sentido in N:
             self.head_pointer = "n"
+            self.vsensor[2] = False
 
         elif novo_sentido in S:
             self.head_pointer = "s"
+            self.vsensor[2] = False
 
         elif novo_sentido in L:
             self.head_pointer = "l"
+            self.vsensor[2] = False
 
         elif novo_sentido in O:
             self.head_pointer = "o"
-
-        return
+            self.vsensor[2] = False
 
     def andar(self):
         if self.head_pointer == "n":

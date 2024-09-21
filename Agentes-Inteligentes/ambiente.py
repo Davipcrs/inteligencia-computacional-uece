@@ -6,6 +6,7 @@ class Ambiente():
         self.local = []
         self.__agente_x = 0
         self.__agente_y = 0
+        self.carregar_ambiente()
 
     def getAgenteX(self):
         return self.__agente_x
@@ -24,7 +25,6 @@ class Ambiente():
 
         print("Ambiente original: ")
         print(self.local)
-
 
     def atualizar_ambiente(self):
         """Limpa o ambiente"""
