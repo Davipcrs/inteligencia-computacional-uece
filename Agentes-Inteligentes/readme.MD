@@ -189,4 +189,44 @@ Com base nesses dados coletados conseguimos verificar os resultados.
 
 ## 4. Resultados
 
+Os arquivos que contém os resultados brutos estão contidos no diretório results.
+
+De forma breve temos:
+
+- Ambiente 1 (Verificar arquivo ambientes/ambiente.txt):
+  - Agente Reativo (iterações: 251):
+    - Pontuação Simples: 5
+    - Pontuação Complexa: -240
+
+  - Agente Modelo (iterações: 20):
+    - Pontuação Simples: 5
+    - Pontuação Complexa: -9
+
+- Ambiente 2 (Verificar arquivo ambientes/ambiente2.txt):
+  - Agente Reativo (iterações: 53):
+    - Pontuação Simples: 5
+    - Pontuação Complexa: 42
+
+  - Agente Modelo (iterações: 24):
+    - Pontuação Simples: 5
+    - Pontuação Complexa: -13
+
+- Ambiente 3 (Verificar arquivo ambientes/ambiente3.txt):
+  - Agente Reativo (iterações: 34):
+    - Pontuação Simples: 5
+    - Pontuação Complexa: -23
+
+  - Agente Modelo (iterações: 51):
+    - Pontuação Simples: 16
+    - Pontuação Complexa: -18
+
+- Ambiente 4 (Verificar arquivo ambientes/ambiente4.txt):
+  - Agente Reativo (iterações: 238):
+    - Pontuação Simples: 8
+    - Pontuação Complexa: -221
+
+  - Agente Modelo (iterações: 25):
+    - Pontuação Simples: 6
+    - Pontuação Complexa: -12
+
 ## 5. Conclusões
