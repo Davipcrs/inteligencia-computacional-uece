@@ -23,7 +23,7 @@ A Classe Agente tem 2 classes filhas a classe AgenteReativo1 e a classe AgenteMo
 
 ### 2.1 Classe Agente
 
-Para auxiliar a implementação foi criado uma classe basica de agente que pode ser extendida para alcançar o objeto, essa classe é a Agente (agente.py) que contém os Métodos abstratos
+Para auxiliar a implementação foi criado uma classe básica de agente que pode ser extendida para alcançar o objeto, essa classe é a Agente (agente.py) que contém os Métodos abstratos
 
 ``` python
 def definir_acao():
@@ -58,7 +58,7 @@ def andar(self):
 
 ```
 
-E a classe possue esses Atributos para guardar informações.
+E a classe possui esses Atributos para guardar informações.
 
 ```python
 def __init__(self, ambiente: Ambiente):
@@ -90,7 +90,7 @@ def __init__(self, x, y, caminho_ambiente):
         self.carregar_ambiente() # Chamada para ler o arquivo .txt que contem o ambiente.
 ```
 
-Essa classe não possue métodos abstratos. Porém, contem os seguintes Métodos.
+Essa classe não possue métodos abstratos. Porém, contém os seguintes Métodos.
 
 ``` python
 def getAgenteX(self):
@@ -205,7 +205,7 @@ De forma breve temos:
 - Ambiente 2 (Verificar arquivo ambientes/ambiente2.txt):
   - Agente Reativo (iterações: 53):
     - Pontuação Simples: 5
-    - Pontuação Complexa: 42
+    - Pontuação Complexa: -42
 
   - Agente Modelo (iterações: 24):
     - Pontuação Simples: 5
@@ -230,3 +230,12 @@ De forma breve temos:
     - Pontuação Complexa: -12
 
 ## 5. Conclusões
+
+Usando os resultados obtidos é possível observar:
+
+- O modelo implementado no Agente em modelos permite que ele seja deterministico (Irá reproduzir o mesmo resultado se for o mesmo ambiente) ainda que ele se adapte a vários ambientes.
+- O agente Reativo tem característica de aleatoriedade em certos momentos portanto não é consistente (Exemplo no Ambiente 3, o agente possui menos iterações que o agente baseado em modelos, o que não ocorre nos outros ambientes).
+- Em ambientes pequenos o agente baseado em modelo desempenha melhor
+- O agente baseado em modelos tem uma consistência maior, a pontuação dele não tem picos.
+
+Nesse tipo de Ambiente (Mundo Aspirador de Pó) o Agente baseado em modelos é uma opção melhor para economizar recursos, justamente por ser mais consistente, pode ser desenvolvidos Modelos e Padrões de tomadas de decisão que melhorem ainda mais a sua eficiencia, fazendo que ele visite apenas uma vez cada célula.
